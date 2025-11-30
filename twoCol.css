@@ -1,0 +1,17 @@
+#head {
+border-bottom: 3px double black;
+}
+#left {
+float: left;
+width:20%;
+}
+#right {
+float: left;
+width: 70%;
+border-left: 0px double gray;
+}
+#footer {
+clear: both;
+text-align: center;
+border-top: 0px double gray;
+}
