@@ -27,7 +27,7 @@ jobs:
 
       - name: Firebase Deploy
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: $HOME/gcloud-key.json
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.HOME }}/gcloud-key.json
         run: |
           firebase deploy --only hosting
           
