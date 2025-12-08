@@ -23,7 +23,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Set up Service Account Credentials
-        run: echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > ${HOME}/gcloud-key.json
+        run: echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}' > ${HOME}/gcloud-key.json
 
       - name: Firebase Deploy
         env:
