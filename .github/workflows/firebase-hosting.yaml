@@ -23,11 +23,19 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Set up Service Account Credentials
-        run: echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}' > ${HOME}/gcloud-key.json
+        run: |
+          # Write the JSON key to a file under the real $HOME
+          echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}' > "$HOME/gcloud-key.json"
+
+          # Export GOOGLE_APPLICATION_CREDENTIALS for later steps
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-key.json" >> "$GITHUB_ENV"
 
       - name: Firebase Deploy
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.HOME }}/gcloud-key.json
         run: |
-          firebase deploy --only hosting
+          # Debug (optional, remove once it works)
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS"
+          ls -l "$GOOGLE_APPLICATION_CREDENTIALS"
+
+          # Do the actual deploy
+          firebase deploy --only hosting --non-interactive
           
