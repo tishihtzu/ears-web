@@ -2,12 +2,12 @@
   "hosting": [
     {
       "target": "staging",
-      "public": "dist",
+      "public": ".",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     },
     {
       "target": "prod",
-      "public": "dist",
+      "public": ".",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
