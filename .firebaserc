@@ -1,5 +1,28 @@
 {
   "projects": {
     "default": "earsweb-a87c3"
-  }
+  },
+  "targets": {
+    "YOUR_PROJECT_ID": {
+      "hosting": {
+        "staging": [
+          "earsweb-a87c3"
+        ],
+        "prod": [
+          "ears-web-prod"
+        ]
+      }
+    },
+    "earsweb-a87c3": {
+      "hosting": {
+        "staging": [
+          "earsweb-a87c3"
+        ],
+        "prod": [
+          "ears-web-prod"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
