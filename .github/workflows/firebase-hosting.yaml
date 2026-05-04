@@ -12,15 +12,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "22"
-
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+          node-version: "24"
+          # Removed cache: 'npm' because no package.json exists
 
       - name: Set up Service Account Credentials
         run: |
@@ -29,25 +27,21 @@ jobs:
 
       - name: Firebase Deploy (staging)
         run: |
-          firebase deploy --only hosting:staging --non-interactive
+          npx firebase-tools deploy --only hosting:staging --non-interactive
 
   deploy-production:
     needs: deploy-staging
     runs-on: ubuntu-latest
-    # This is the key for option 4: manual approval via environment
     environment: production
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: "22"
-
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+          node-version: "24"
 
       - name: Set up Service Account Credentials
         run: |
@@ -56,4 +50,5 @@ jobs:
 
       - name: Firebase Deploy (production)
         run: |
-          firebase deploy --only hosting:prod --non-interactive
+          npx firebase-tools deploy --only hosting:prod --non-interactive
+          
