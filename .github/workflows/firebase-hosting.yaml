@@ -18,10 +18,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "24"
-          cache: 'npm'
-
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+          # Removed cache: 'npm' because no package.json exists
 
       - name: Set up Service Account Credentials
         run: |
@@ -30,12 +27,11 @@ jobs:
 
       - name: Firebase Deploy (staging)
         run: |
-          firebase deploy --only hosting:staging --non-interactive
+          npx firebase-tools deploy --only hosting:staging --non-interactive
 
   deploy-production:
     needs: deploy-staging
     runs-on: ubuntu-latest
-    # This is the key for option 4: manual approval via environment
     environment: production
 
     steps:
@@ -46,10 +42,6 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "24"
-          cache: 'npm'
-
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
 
       - name: Set up Service Account Credentials
         run: |
@@ -58,4 +50,5 @@ jobs:
 
       - name: Firebase Deploy (production)
         run: |
-          firebase deploy --only hosting:prod --non-interactive
+          npx firebase-tools deploy --only hosting:prod --non-interactive
+          
